@@ -1,9 +1,10 @@
 
 
 <template>
-  <!--<el-button type="primary" size="mini" icon="el-icon-edit" > 新增主机 </el-button>-->
+  <div>
+  <el-button type="primary"  icon="el-icon-edit" @click="Add" style="float: left;" > 新增主机 </el-button>
   <el-table :data="tableData" style="width: 100%">
-    <!--<child @parentMethod="Add"></child>-->
+
     <el-table-column  prop="id" label="ID" align="center"> </el-table-column>
     <el-table-column  prop="name" label="主机名称"   align="center">  </el-table-column>
     <el-table-column  prop="device_type" label="设备类型" align="center"> </el-table-column>
@@ -26,21 +27,19 @@
     </el-table-column>
 
   </el-table>
+  </div>
 </template>
 
 <script>
   import { Get } from '../api/api'
-  //import child from './Add'
   export default {
     data () {
       return {
         tableData: null
       }
     },
-    //components:{
-    //  child
-   // },
     mounted(){
+
       this.click_Get();
     },
     methods: {
@@ -54,8 +53,7 @@
         });
       },
       Add(){
-        console.log(1);
-        //this.$router.push({path: '/addList'});
+          this.$router.push({path: '/insertList'});
       }
     }
 

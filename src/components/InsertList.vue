@@ -1,4 +1,5 @@
 <template>
+  <div>
 <el-form ref="form" :model="form" label-width="140px" style="width: 28%;" >
 
   <el-form-item label="设备类型">
@@ -46,13 +47,14 @@
     </el-radio-group>
   </el-form-item>
 
-  <el-form-item>
-    <el-button type="primary" @click="click_Post">立即创建</el-button>
-  </el-form-item>
 
 
 
 </el-form>
+
+    <el-button type="info" plain @click="back" >返回</el-button>
+    <el-button  type="primary" @click="click_Post">立即创建</el-button>
+  </div>
 </template>
 
 
@@ -60,24 +62,39 @@
 <script>
   import { Post } from '../api/api'
   import axios from 'axios'
+  import qs from 'qs'
   export default {
     data() {
       return {
         form: {
-          // "device_type": "ctrix系列",
-          // "name": "VM174",
-          // "lessee": "test2",
-          // "ip": "bk37672730.qicp.vip",
-          // "port": "22616",
-          // "ip_local": "192.168.31.174",
-          // "port_local": "443",
-          // "username": "admin",
-          // "password": "michael",
-          // "stream_monitor_flag": "0",
-          // "f4G_flag": "0",
-          // "manager_name": "",
-          // "other": "",
-          // "SectsName": ""
+            "device_type": "",
+            "name": "",
+            "lessee": "",
+            "ip": "",
+            "port": "",
+            "ip_local": "",
+            "port_local": "",
+            "username": "",
+            "password": "",
+            "stream_monitor_flag": "0",
+            "f4G_flag": "0",
+            "manager_name": "",
+            "other": "",
+            "SectsName": ""
+            // "device_type": "ctrix系列",
+            // "name": "VM174",
+            // "lessee": "test2",
+            // "ip": "bk37672730.qicp.vip",
+            // "port": "22616",
+            // "ip_local": "192.168.31.174",
+            // "port_local": "443",
+            // "username": "admin",
+            // "password": "michael",
+            // "stream_monitor_flag": "0",
+            // "f4G_flag": "0",
+            // "manager_name": "",
+            // "other": "",
+            // "SectsName": ""
         },
         assemb: []
       }
@@ -85,16 +102,18 @@
     methods: {
       click_Post() {
         Post(this.form).then(resp => {
-          console.log('getDisassemble --->', resp.data);
-          this.assemb = resp.data.message;
+          //console.log('getDisassemble --->', resp);
+          //this.assemb = resp.data.message;
         }).catch(error => {
           console.log(error);
         });
 
 
 
-
-      }
+      },
+        back(){
+            this.$router.push({path: '/'});
+        }
       }
 
   }
